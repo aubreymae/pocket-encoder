@@ -1,0 +1,14 @@
+__pycachy__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+app/uploads/*
+!app/uploads/.gitkeep
+app/processed/*
+!app/processed/.gitkeep
+
+*.db
+*.sqlite3
+.env
