@@ -12,3 +12,5 @@ app/processed/*
 *.db
 *.sqlite3
 .env
+
+instance/
