@@ -1,10 +1,13 @@
 import os
 from flask import Flask
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
+
+from . import db
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+
     app.config.from_mapping(
         SECRET_KEY="dev", 
         DATABASE=os.path.join(app.instance_path, "upload-db.db"),
@@ -24,10 +27,13 @@ def create_app(test_config=None):
     os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
     os.makedirs(app.config["PROCESSED_FOLDER"], exist_ok=True)
 
-    from . import db
+    # Set up the database
     db.init_app(app)
 
-    from app.routes import api
+    # Register API routes
+    from .routes import api
     app.register_blueprint(api)
+
+    CORS(app)
 
     return app
