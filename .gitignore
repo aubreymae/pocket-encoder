@@ -14,3 +14,8 @@ app/processed/*
 .env
 
 instance/
+
+dump.rdb
+
+.DS_Store
+app/.DS_Store
